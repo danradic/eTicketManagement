@@ -5,7 +5,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GloboTicket.TicketManagement.Application.Features.Events.GetEventDetail
+namespace GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventDetail
 {
     public class GetEventDetailQueryHandler : IRequestHandler<GetEventDetailQuery, EventDetailVm>
     {
@@ -24,7 +24,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.GetEventDetai
         {
             var @event = await _eventRepository.GetByIdAsync(request.Id);
             var eventDetailDto = _mapper.Map<EventDetailVm>(@event);
-            
+
             var category = await _categoryRepository.GetByIdAsync(@event.CategoryId);
 
             eventDetailDto.Category = _mapper.Map<CategoryDto>(category);
