@@ -19,6 +19,9 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
 
         public async Task<Guid> Handle(CreateEventCommand request, CancellationToken cancellationToken)
         {
+            var validator = new CreateEventCommandValidator();
+            var validationResult = await validator.ValidateAsync(request);
+
             var @event = _mapper.Map<Event>(request);
 
             @event = await _eventRepository.AddAsync(@event);
