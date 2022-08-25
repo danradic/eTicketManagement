@@ -23,6 +23,19 @@ namespace GloboTicket.TicketManagement.Application.Features.Categories.Commands.
         {
             var createCategoryCommandResponse = new CreateCategoryCommandResponse();
 
+            var validator = new CreateCategoryCommandValidator();
+            var validationResponse = await validator.ValidateAsync(request);
+
+            if (validationResponse.Errors.Count > 0)
+            {
+                createCategoryCommandResponse.Success = false;
+                createCategoryCommandResponse.ValidationErrors = new List<string>();
+
+                foreach (var error in validationResponse.Errors)
+                {
+                    createCategoryCommandResponse.ValidationErrors.Add(error.ErrorMessage);
+                }
+            }
             if (createCategoryCommandResponse.Success)
             {
                 var category = new Category() { Name = request.Name };
