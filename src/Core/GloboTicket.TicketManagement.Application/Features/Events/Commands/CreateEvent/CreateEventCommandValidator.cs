@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using GloboTicket.TicketManagement.Application.Contracts.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,11 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
 {
     public class CreateEventCommandValidator : AbstractValidator<CreateEventCommand>
     {
-        public CreateEventCommandValidator()
+        private readonly IEventRepository _eventRepository;
+        public CreateEventCommandValidator(IEventRepository eventRepository)
         {
+            _eventRepository = eventRepository;
+
             RuleFor(p => p.Name)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
@@ -24,6 +28,16 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
             RuleFor(p => p.Price)
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .GreaterThan(0);
+
+            RuleFor(e => e)
+                .MustAsync(IsEventNameAndDateUnique)
+                .WithMessage("An event with the same name and date aleady exists.");
+
+        }
+
+        private async Task<bool> IsEventNameAndDateUnique(CreateEventCommand e, CancellationToken token)
+        {
+            return !(await _eventRepository.IsEventNameAndDateUnique(e.Name, e.Date));
         }
     }
 }
