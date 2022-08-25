@@ -9,6 +9,6 @@ namespace GloboTicket.TicketManagement.Application.Features.Categories.Commands.
 
         }
 
-        public CreateCategoryDto Category { get; set; }
+        public CreateCategoryDto? Category { get; set; }
     }
 }
