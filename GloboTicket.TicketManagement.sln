@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GloboTicket.TicketManagemen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GloboTicket.TicketManagement.Infrastructure", "src\Infrastructure\GloboTicket.TicketManagement.Infrastructure\GloboTicket.TicketManagement.Infrastructure.csproj", "{8E661B4B-948F-4213-9DEB-93965E92598A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{BBB3B880-FF96-494D-975D-1847CA6C9D21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GloboTicket.TicketManagement.Api", "src\API\GloboTicket.TicketManagement.Api\GloboTicket.TicketManagement.Api.csproj", "{7FC111A9-1778-4F30-888E-B9F895DF8B81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +46,10 @@ Global
 		{8E661B4B-948F-4213-9DEB-93965E92598A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E661B4B-948F-4213-9DEB-93965E92598A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E661B4B-948F-4213-9DEB-93965E92598A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FC111A9-1778-4F30-888E-B9F895DF8B81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FC111A9-1778-4F30-888E-B9F895DF8B81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FC111A9-1778-4F30-888E-B9F895DF8B81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FC111A9-1778-4F30-888E-B9F895DF8B81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{04227CA6-6843-4599-923C-3D1896843272} = {601B21D8-BDF9-495A-8614-890FAC22030F}
@@ -50,5 +58,7 @@ Global
 		{30495AAF-2D4E-4369-92AD-3C435E590A25} = {601B21D8-BDF9-495A-8614-890FAC22030F}
 		{814EC5D5-DF05-43C2-9CDD-C49F9C85DAD4} = {30495AAF-2D4E-4369-92AD-3C435E590A25}
 		{8E661B4B-948F-4213-9DEB-93965E92598A} = {30495AAF-2D4E-4369-92AD-3C435E590A25}
+		{BBB3B880-FF96-494D-975D-1847CA6C9D21} = {601B21D8-BDF9-495A-8614-890FAC22030F}
+		{7FC111A9-1778-4F30-888E-B9F895DF8B81} = {BBB3B880-FF96-494D-975D-1847CA6C9D21}
 	EndGlobalSection
 EndGlobal
