@@ -27,30 +27,42 @@ namespace GloboTicket.TicketManagement.Persistence
             var musicalGuid = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}");
             var playGuid = Guid.Parse("{BF3F3002-7E53-441E-8B76-F6280BE284AA}");
             var conferenceGuid = Guid.Parse("{FE98F549-E790-4E9F-AA16-18C2292A2EE9}");
+            var createdBy = "dev";
 
             modelBuilder.Entity<Category>().HasData(new Category
             {
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 CategoryId = concertGuid,
                 Name = "Concerts"
             });
             modelBuilder.Entity<Category>().HasData(new Category
             {
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 CategoryId = musicalGuid,
                 Name = "Musicals"
             });
             modelBuilder.Entity<Category>().HasData(new Category
             {
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 CategoryId = playGuid,
                 Name = "Plays"
             });
             modelBuilder.Entity<Category>().HasData(new Category
             {
+
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 CategoryId = conferenceGuid,
                 Name = "Conferences"
             });
 
             modelBuilder.Entity<Event>().HasData(new Event
             {
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 EventId = Guid.Parse("{EE272F8B-6096-4CB6-8625-BB4BB2D89E8B}"),
                 Name = "John Egbert Live",
                 Price = 65,
@@ -63,6 +75,8 @@ namespace GloboTicket.TicketManagement.Persistence
 
             modelBuilder.Entity<Event>().HasData(new Event
             {
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 EventId = Guid.Parse("{3448D5A4-0F72-4DD7-BF15-C14A46B26C00}"),
                 Name = "The State of Affairs: Michael Live!",
                 Price = 85,
@@ -75,6 +89,8 @@ namespace GloboTicket.TicketManagement.Persistence
 
             modelBuilder.Entity<Event>().HasData(new Event
             {
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 EventId = Guid.Parse("{B419A7CA-3321-4F38-BE8E-4D7B6A529319}"),
                 Name = "Clash of the DJs",
                 Price = 85,
@@ -87,6 +103,8 @@ namespace GloboTicket.TicketManagement.Persistence
 
             modelBuilder.Entity<Event>().HasData(new Event
             {
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 EventId = Guid.Parse("{62787623-4C52-43FE-B0C9-B7044FB5929B}"),
                 Name = "Spanish guitar hits with Manuel",
                 Price = 25,
@@ -99,6 +117,8 @@ namespace GloboTicket.TicketManagement.Persistence
 
             modelBuilder.Entity<Event>().HasData(new Event
             {
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 EventId = Guid.Parse("{1BABD057-E980-4CB3-9CD2-7FDD9E525668}"),
                 Name = "Techorama 2021",
                 Price = 400,
@@ -111,6 +131,8 @@ namespace GloboTicket.TicketManagement.Persistence
 
             modelBuilder.Entity<Event>().HasData(new Event
             {
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 EventId = Guid.Parse("{ADC42C09-08C1-4D2C-9F96-2D15BB1AF299}"),
                 Name = "To the Moon and Back",
                 Price = 135,
@@ -123,6 +145,8 @@ namespace GloboTicket.TicketManagement.Persistence
 
             modelBuilder.Entity<Order>().HasData(new Order
             {
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 Id = Guid.Parse("{7E94BC5B-71A5-4C8C-BC3B-71BB7976237E}"),
                 OrderTotal = 400,
                 OrderPaid = true,
@@ -132,6 +156,8 @@ namespace GloboTicket.TicketManagement.Persistence
 
             modelBuilder.Entity<Order>().HasData(new Order
             {
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 Id = Guid.Parse("{86D3A045-B42D-4854-8150-D6A374948B6E}"),
                 OrderTotal = 135,
                 OrderPaid = true,
@@ -141,6 +167,8 @@ namespace GloboTicket.TicketManagement.Persistence
 
             modelBuilder.Entity<Order>().HasData(new Order
             {
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 Id = Guid.Parse("{771CCA4B-066C-4AC7-B3DF-4D12837FE7E0}"),
                 OrderTotal = 85,
                 OrderPaid = true,
@@ -150,6 +178,8 @@ namespace GloboTicket.TicketManagement.Persistence
 
             modelBuilder.Entity<Order>().HasData(new Order
             {
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 Id = Guid.Parse("{3DCB3EA0-80B1-4781-B5C0-4D85C41E55A6}"),
                 OrderTotal = 245,
                 OrderPaid = true,
@@ -159,6 +189,8 @@ namespace GloboTicket.TicketManagement.Persistence
 
             modelBuilder.Entity<Order>().HasData(new Order
             {
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 Id = Guid.Parse("{E6A2679C-79A3-4EF1-A478-6F4C91B405B6}"),
                 OrderTotal = 142,
                 OrderPaid = true,
@@ -168,6 +200,8 @@ namespace GloboTicket.TicketManagement.Persistence
 
             modelBuilder.Entity<Order>().HasData(new Order
             {
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 Id = Guid.Parse("{F5A6A3A0-4227-4973-ABB5-A63FBE725923}"),
                 OrderTotal = 40,
                 OrderPaid = true,
@@ -177,6 +211,8 @@ namespace GloboTicket.TicketManagement.Persistence
 
             modelBuilder.Entity<Order>().HasData(new Order
             {
+                CreatedBy = createdBy,
+                LastModifiedBy = createdBy,
                 Id = Guid.Parse("{BA0EB0EF-B69B-46FD-B8E2-41B4178AE7CB}"),
                 OrderTotal = 116,
                 OrderPaid = true,
