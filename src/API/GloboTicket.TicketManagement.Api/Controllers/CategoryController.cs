@@ -30,7 +30,7 @@ namespace GloboTicket.TicketManagement.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<List<CategoryEventListVm>>> GetCategoriesWithEvents(bool includeHistory)
         {
-            GetCategoriesListWithEventsQuery getCategoriesListWithEventsQuery = new GetCategoriesListWithEventsQuery() { IncludeHistory = includeHistory };
+            GetCategoriesListWithEventsQuery getCategoriesListWithEventsQuery = new() { IncludeHistory = includeHistory };
 
             var dtos = await _mediator.Send(getCategoriesListWithEventsQuery);
             return Ok(dtos);
