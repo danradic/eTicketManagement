@@ -41,5 +41,27 @@ namespace GloboTicket.TicketManagement.Api.Controllers
             var id = await _mediator.Send(createEventCommand);
             return Ok(id);
         }
+
+        [HttpPut(Name = "UpdateEvent")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> Update([FromBody] UpdateEventCommand updateEventCommand)
+        {
+            await _mediator.Send(updateEventCommand);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}", Name = "DeleteEvent")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> Delete(Guid id)
+        {
+            var deleteEventCommand = new DeleteEventCommand() { EventId = id };
+            await _mediator.Send(deleteEventCommand);
+            return NoContent();
+        }
+
     }
 }
