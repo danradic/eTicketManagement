@@ -12,12 +12,12 @@ namespace GloboTicket.TicketManagement.Infrastructure
     {
         public byte[] ExportDataToCsv<T>(List<T> exportDtos)
         {
-            using var memoryStream = new MemoryStream();
-            using (var streamWriter = new StreamWriter(memoryStream))
+            using MemoryStream memoryStream = new();
+            using (StreamWriter streamWriter = new(memoryStream))
             {
-                CsvConfiguration config = new CsvConfiguration(CultureInfo.InvariantCulture);
+                CsvConfiguration config = new(CultureInfo.InvariantCulture);
 
-                using var csvWriter = new CsvWriter(streamWriter, config);
+                using CsvWriter csvWriter = new(streamWriter, config);
                 csvWriter.WriteRecords(exportDtos);
             }
 
