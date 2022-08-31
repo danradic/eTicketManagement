@@ -1,12 +1,9 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
 using GloboTicket.TicketManagement.Application.Contracts.Infrastructure;
-using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventsExport;
-using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 
-namespace GloboTicket.TicketManagement.Infrastructure
+namespace GloboTicket.TicketManagement.Infrastructure.FileExport
 {
     public class CsvExporter : ICsvExporter
     {
