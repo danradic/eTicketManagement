@@ -26,7 +26,7 @@ namespace GloboTicket.TicketManagement.Application.UnitTests.Categories.Commands
         }
 
         [Fact]
-        public async Task CreateCategory() 
+        public async Task CreateCategoryTest() 
         {
             var handler = new CreateCategoryCommandHandler(_mapper, _mockCategoryRepository.Object);
 
