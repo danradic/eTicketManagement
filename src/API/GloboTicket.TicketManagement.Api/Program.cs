@@ -22,6 +22,8 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddPersistenceServices(builder.Configuration);
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddScoped<ILoggedInUserService, LoggedInUserService>();
 
 builder.Services.AddControllers();
