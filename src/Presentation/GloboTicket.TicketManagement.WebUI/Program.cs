@@ -28,7 +28,6 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStat
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7133") });
 
 builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = new Uri("https://localhost:7133"));
-//builder.Services.AddScoped<IClient>(_ => new Client(new Uri("https://localhost:7133").ToString(), new HttpClient { BaseAddress = new Uri("https://localhost:7133") }));
 
 builder.Services.AddScoped<IEventDataService, EventDataService>();
 
