@@ -30,5 +30,6 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https:/
 builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = new Uri("https://localhost:7133"));
 
 builder.Services.AddScoped<IEventDataService, EventDataService>();
+builder.Services.AddScoped<ICategoryDataService, CategoryDataService>();
 
 await builder.Build().RunAsync();
