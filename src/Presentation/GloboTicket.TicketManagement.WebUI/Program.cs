@@ -31,5 +31,6 @@ builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = n
 
 builder.Services.AddScoped<IEventDataService, EventDataService>();
 builder.Services.AddScoped<ICategoryDataService, CategoryDataService>();
+builder.Services.AddScoped<IOrderDataService, OrderDataService>();
 
 await builder.Build().RunAsync();
