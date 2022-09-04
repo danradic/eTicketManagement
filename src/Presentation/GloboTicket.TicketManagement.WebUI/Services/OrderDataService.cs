@@ -12,12 +12,19 @@ namespace GloboTicket.TicketManagement.WebUI.Services
     {
         private readonly IMapper _mapper;
 
-        public OrderDataService(IClient client, IMapper mapper, ILocalStorageService localStorage) : base(client, localStorage)
+        public OrderDataService(
+            IClient client, 
+            IMapper mapper, 
+            ILocalStorageService localStorage) 
+            : base(client, localStorage)
         {
             _mapper = mapper;
         }
 
-        public async Task<PagedOrderForMonthViewModel> GetPagedOrderForMonth(DateTime date, int page, int size)
+        public async Task<PagedOrderForMonthViewModel> GetPagedOrderForMonth(
+            DateTime date, 
+            int page, 
+            int size)
         {
             var orders = await _client.GetPagedOrdersForMonthAsync(date, page, size);
             var mappedOrders = _mapper.Map<PagedOrderForMonthViewModel>(orders);
