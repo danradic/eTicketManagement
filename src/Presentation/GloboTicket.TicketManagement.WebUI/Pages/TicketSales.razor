@@ -1,4 +1,5 @@
 ﻿@page "/ticketsales"
+@using GloboTicket.TicketManagement.WebUI.Components
 
 <h3 class="mb-5">Ticket Sales</h3>
 
@@ -54,7 +55,11 @@ else
         </tbody>
     </table>
 
-    <Pager PageIndex="@paginatedList.PageIndex" TotalPages=@paginatedList.TotalPages OnClick="PageIndexChanged"
-           HasNextPage=@paginatedList.HasNextPage HasPreviousPage=@paginatedList.HasPreviousPage>
+
+    <Pager PageIndex="@paginatedList.PageIndex" 
+        TotalPages=@paginatedList.TotalPages 
+        OnClick="PageIndexChanged"
+        HasNextPage=@paginatedList.HasNextPage 
+        HasPreviousPage=@paginatedList.HasPreviousPage>
     </Pager>
 }
