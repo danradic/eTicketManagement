@@ -22,8 +22,8 @@ builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7133") });
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]) });
 
-
+builder.Services.AddScoped(sp => new ApiClient(builder.Configuration["ApiBaseUrl"], new HttpClient()));
 
 await builder.Build().RunAsync();
