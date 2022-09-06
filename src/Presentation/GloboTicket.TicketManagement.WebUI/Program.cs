@@ -2,9 +2,6 @@ using AutoMapper;
 using Blazored.LocalStorage;
 using GloboTicket.TicketManagement.WebUI;
 using GloboTicket.TicketManagement.WebUI.Auth;
-using GloboTicket.TicketManagement.WebUI.Contracts;
-using GloboTicket.TicketManagement.WebUI.Services;
-using GloboTicket.TicketManagement.WebUI.Services.Base;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -27,10 +24,6 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStat
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7133") });
 
-builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = new Uri("https://localhost:7133"));
 
-builder.Services.AddScoped<IEventDataService, EventDataService>();
-builder.Services.AddScoped<ICategoryDataService, CategoryDataService>();
-builder.Services.AddScoped<IOrderDataService, OrderDataService>();
 
 await builder.Build().RunAsync();
