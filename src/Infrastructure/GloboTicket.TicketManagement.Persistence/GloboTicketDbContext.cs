@@ -235,11 +235,12 @@ namespace GloboTicket.TicketManagement.Persistence
                 {
                     case EntityState.Added:
                         entry.Entity.CreatedDate = DateTime.Now;
-                        entry.Entity.CreatedBy = _loggedInUserService.UserId;
+                        entry.Entity.CreatedBy = _loggedInUserService.UserId ?? "dev";
+                        entry.Entity.LastModifiedBy = _loggedInUserService.UserId ?? "dev";
                         break;
                     case EntityState.Modified:
                         entry.Entity.LastModifiedDate = DateTime.Now;
-                        entry.Entity.LastModifiedBy = _loggedInUserService.UserId;
+                        entry.Entity.LastModifiedBy = _loggedInUserService.UserId ?? "dev";
                         break;
                 }
             }
