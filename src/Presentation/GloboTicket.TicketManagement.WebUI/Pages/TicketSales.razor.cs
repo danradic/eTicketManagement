@@ -1,4 +1,5 @@
 ﻿using GloboTicket.TicketManagement.WebUI.Components;
+using GloboTicket.TicketManagement.WebUI.Contracts;
 using GloboTicket.TicketManagement.WebUI.ViewModels;
 using Microsoft.AspNetCore.Components;
 
@@ -6,6 +7,9 @@ namespace GloboTicket.TicketManagement.WebUI.Pages
 {
     public partial class TicketSales
     {
+
+        [Inject]
+        public IOrderDataService OrderDataService { get; set; }
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
@@ -27,9 +31,9 @@ namespace GloboTicket.TicketManagement.WebUI.Pages
         {
             DateTime dt = new DateTime(int.Parse(SelectedYear), int.Parse(SelectedMonth), 1);
 
-            //var orders = await OrderDataService.GetPagedOrderForMonth(dt, pageNumber.Value, 5);
-            //paginatedList = new PaginatedList<OrdersForMonthListViewModel>(orders.OrdersForMonth.ToList(), orders.Count, pageNumber.Value, 5);
-            //ordersList = paginatedList.Items;
+            var orders = await OrderDataService.GetPagedOrderForMonth(dt, pageNumber.Value, 5);
+            paginatedList = new PaginatedList<OrdersForMonthListViewModel>(orders.OrdersForMonth.ToList(), orders.Count, pageNumber.Value, 5);
+            ordersList = paginatedList.Items;
 
             StateHasChanged();
         }

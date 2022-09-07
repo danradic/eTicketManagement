@@ -1,10 +1,15 @@
-﻿using GloboTicket.TicketManagement.WebUI.ViewModels;
+﻿using GloboTicket.TicketManagement.WebUI.Contracts;
+using GloboTicket.TicketManagement.WebUI.Services.Base;
+using GloboTicket.TicketManagement.WebUI.ViewModels;
 using Microsoft.AspNetCore.Components;
+using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.WebUI.Pages
 {
     public partial class AddCategory
     {
+        [Inject]
+        public ICategoryDataService CategoryDataService { get; set; }
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
@@ -19,22 +24,22 @@ namespace GloboTicket.TicketManagement.WebUI.Pages
 
         protected async Task HandleValidSubmit()
         {
-        //    var response = await CategoryDataService.CreateCategory(CategoryViewModel);
-        //    HandleResponse(response);
+            var response = await CategoryDataService.CreateCategory(CategoryViewModel);
+            HandleResponse(response);
         }
 
-        //private void HandleResponse(ApiResponse<CategoryDto> response)
-        //{
-        //    if (response.Success)
-        //    {
-        //        Message = "Category added";
-        //    }
-        //    else
-        //    {
-        //        Message = response.Message;
-        //        if (!string.IsNullOrEmpty(response.ValidationErrors))
-        //            Message += response.ValidationErrors;
-        //    }
-        //}
+        private void HandleResponse(ApiResponse<CategoryDto> response)
+        {
+            if (response.Success)
+            {
+                Message = "Category added";
+            }
+            else
+            {
+                Message = response.Message;
+                if (!string.IsNullOrEmpty(response.ValidationErrors))
+                    Message += response.ValidationErrors;
+            }
+        }
     }
 }

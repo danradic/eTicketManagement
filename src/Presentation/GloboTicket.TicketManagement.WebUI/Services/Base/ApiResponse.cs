@@ -1,4 +1,4 @@
-﻿namespace GloboTicket.TicketManagement.App.Services.Base
+﻿namespace GloboTicket.TicketManagement.WebUI.Services.Base
 {
     public class ApiResponse<T>
     {

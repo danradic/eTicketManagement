@@ -1,29 +1,26 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using GloboTicket.TicketManagement.WebUI.Contracts;
+using GloboTicket.TicketManagement.WebUI.ViewModels;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.WebUI.Pages
 {
     public partial class EventOverview
     {
-
         [Inject]
-        public ApiClient _apiClient { get; set; }
+        public IEventDataService EventDataService { get; set; }
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
-        public ICollection<EventListVm> Events { get; set; }
+        public ICollection<EventListViewModel> Events { get; set; }
 
         [Inject]
         public IJSRuntime JSRuntime { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
-            Events = await _apiClient.GetAllEventsAsync();
+            Events = await EventDataService.GetAllEvents();
         }
 
         protected void AddNewEvent()

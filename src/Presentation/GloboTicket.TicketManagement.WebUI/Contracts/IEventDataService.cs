@@ -1,14 +1,17 @@
-﻿using GloboTicket.TicketManagement.App.Services.Base;
-using GloboTicket.TicketManagement.WebUI.Services;
+﻿using GloboTicket.TicketManagement.WebUI.ViewModels;
+using GloboTicket.TicketManagement.WebUI.Services.Base;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.WebUI.Contracts
 {
     public interface IEventDataService
     {
-        Task<List<EventListVm>> GetAllEvents();
-        Task<EventDetailVm> GetEventById(Guid id);
-        Task<ApiResponse<Guid>> CreateEvent(EventDetailVm eventDetailViewModel);
-        Task<ApiResponse<Guid>> UpdateEvent(EventDetailVm eventDetailViewModel);
+        Task<List<EventListViewModel>> GetAllEvents();
+        Task<EventDetailViewModel> GetEventById(Guid id);
+        Task<ApiResponse<Guid>> CreateEvent(EventDetailViewModel eventDetailViewModel);
+        Task<ApiResponse<Guid>> UpdateEvent(EventDetailViewModel eventDetailViewModel);
         Task<ApiResponse<Guid>> DeleteEvent(Guid id);
     }
 }

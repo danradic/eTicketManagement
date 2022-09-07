@@ -1,7 +1,5 @@
 ﻿using Blazored.LocalStorage;
-using GloboTicket.TicketManagement.App.Services.Base;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.WebUI.Services.Base
 {
@@ -9,9 +7,9 @@ namespace GloboTicket.TicketManagement.WebUI.Services.Base
     {
         protected readonly ILocalStorageService _localStorage;
         
-        protected ApiClient _client;
+        protected IApiClient _client;
 
-        public BaseDataService(ApiClient client, ILocalStorageService localStorage)
+        public BaseDataService(IApiClient client, ILocalStorageService localStorage)
         {
             _client = client;
             _localStorage = localStorage;

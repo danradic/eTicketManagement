@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using GloboTicket.TicketManagement.App.Services.Base;
+﻿using GloboTicket.TicketManagement.WebUI.Contracts;
+using GloboTicket.TicketManagement.WebUI.Services.Base;
 using GloboTicket.TicketManagement.WebUI.ViewModels;
 using Microsoft.AspNetCore.Components;
 using System.Collections.ObjectModel;
@@ -8,21 +8,20 @@ namespace GloboTicket.TicketManagement.WebUI.Pages
 {
     public partial class EventDetails
     {
+        [Inject]
+        public IEventDataService EventDataService { get; set; }
 
         [Inject]
-        public IMapper _mapper { get; set; }
-        
-        [Inject]
-        public ApiClient _apiClient { get; set; }
-        
+        public ICategoryDataService CategoryDataService { get; set; }
+
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
-        public EventDetailVm EventDetailViewModel { get; set; } 
-            = new EventDetailVm() { Date = DateTime.Now.AddDays(1) };
+        public EventDetailViewModel EventDetailViewModel { get; set; } 
+            = new EventDetailViewModel() { Date = DateTime.Now.AddDays(1) };
 
-        public ObservableCollection<CategoryListVm> Categories { get; set; } 
-            = new ObservableCollection<CategoryListVm>();
+        public ObservableCollection<CategoryViewModel> Categories { get; set; } 
+            = new ObservableCollection<CategoryViewModel>();
 
         public string Message { get; set; }
         public string SelectedCategoryId { get; set; }
@@ -35,12 +34,12 @@ namespace GloboTicket.TicketManagement.WebUI.Pages
         {
             if (Guid.TryParse(EventId, out SelectedEventId))
             {
-                EventDetailViewModel = await _apiClient.GetEventByIdAsync(SelectedEventId);
+                EventDetailViewModel = await EventDataService.GetEventById(SelectedEventId);
                 SelectedCategoryId = EventDetailViewModel.CategoryId.ToString();
             }
 
-            var list = await _apiClient.GetAllCategoriesAsync();
-            Categories = new ObservableCollection<CategoryListVm>(list);
+            var list = await CategoryDataService.GetAllCategories();
+            Categories = new ObservableCollection<CategoryViewModel>(list);
             SelectedCategoryId = Categories.FirstOrDefault().CategoryId.ToString();
         }
 
@@ -51,14 +50,11 @@ namespace GloboTicket.TicketManagement.WebUI.Pages
 
             if (SelectedEventId == Guid.Empty)
             {
-                CreateEventCommand createEventCommand = _mapper.Map<CreateEventCommand>(EventDetailViewModel);
-                var newId = await _apiClient.AddEventAsync(createEventCommand);
-                response = new ApiResponse<Guid>() { Data = newId, Success = true };
+                response = await EventDataService.CreateEvent(EventDetailViewModel);
             }
             else
             {
-                UpdateEventCommand updateEventCommand = _mapper.Map<UpdateEventCommand>(EventDetailViewModel);
-                await _apiClient.UpdateEventAsync(updateEventCommand);
+                 response = await EventDataService.UpdateEvent(EventDetailViewModel);
             }
             HandleResponse(response);
 
@@ -66,8 +62,8 @@ namespace GloboTicket.TicketManagement.WebUI.Pages
 
         protected async Task DeleteEvent()
         {
-            //var response = await EventDataService.DeleteEvent(SelectedEventId);
-            //HandleResponse(response);
+            var response = await EventDataService.DeleteEvent(SelectedEventId);
+            HandleResponse(response);
         }
 
         protected void NavigateToOverview()

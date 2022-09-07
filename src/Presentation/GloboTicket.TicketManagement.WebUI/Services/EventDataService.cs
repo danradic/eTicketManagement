@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Blazored.LocalStorage;
-using GloboTicket.TicketManagement.App.Services.Base;
 using GloboTicket.TicketManagement.WebUI.Contracts;
 using GloboTicket.TicketManagement.WebUI.Services.Base;
+using GloboTicket.TicketManagement.WebUI.ViewModels;
 
 namespace GloboTicket.TicketManagement.WebUI.Services
 {
@@ -11,26 +11,26 @@ namespace GloboTicket.TicketManagement.WebUI.Services
         
         private readonly IMapper _mapper;
 
-        public EventDataService(ApiClient client, IMapper mapper, ILocalStorageService localStorage) : base(client, localStorage)
+        public EventDataService(IApiClient client, IMapper mapper, ILocalStorageService localStorage) : base(client, localStorage)
         {
             _mapper = mapper;
         }
 
-        public async Task<List<EventListVm>> GetAllEvents()
+        public async Task<List<EventListViewModel>> GetAllEvents()
         {
             var allEvents = await _client.GetAllEventsAsync();
-            var mappedEvents = _mapper.Map<ICollection<EventListVm>>(allEvents);
+            var mappedEvents = _mapper.Map<ICollection<EventListViewModel>>(allEvents);
             return mappedEvents.ToList();
         }
 
-        public async Task<EventDetailVm> GetEventById(Guid id)
+        public async Task<EventDetailViewModel> GetEventById(Guid id)
         {
             var selectedEvent = await _client.GetEventByIdAsync(id);
-            var mappedEvent = _mapper.Map<EventDetailVm>(selectedEvent);
+            var mappedEvent = _mapper.Map<EventDetailViewModel>(selectedEvent);
             return mappedEvent;
         }
 
-        public async Task<ApiResponse<Guid>> CreateEvent(EventDetailVm eventDetailViewModel)
+        public async Task<ApiResponse<Guid>> CreateEvent(EventDetailViewModel eventDetailViewModel)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace GloboTicket.TicketManagement.WebUI.Services
             }
         }
 
-        public async Task<ApiResponse<Guid>> UpdateEvent(EventDetailVm eventDetailViewModel)
+        public async Task<ApiResponse<Guid>> UpdateEvent(EventDetailViewModel eventDetailViewModel)
         {
             try
             {

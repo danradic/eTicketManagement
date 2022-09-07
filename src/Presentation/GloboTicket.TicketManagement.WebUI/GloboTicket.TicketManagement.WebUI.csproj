@@ -7,12 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <OpenApiReference 
-		Include="OpenAPIs\swagger.json" 
-		CodeGenerator="NSwagCSharp" 
-		Namespace="GloboTicket.TicketManagement.WebUI.Services"
-		ClassName="ApiClient">
-		<OutputPath>$(ProjectDir)\Services\ApiClient.cs</OutputPath>
+    <OpenApiReference Include="OpenAPIs\swagger.json" CodeGenerator="NSwagCSharp" Namespace="GloboTicket.TicketManagement.WebUI.Services.Base" ClassName="ApiClient">
+		<OutputPath>$(ProjectDir)\Services\Base\ServiceClient.cs</OutputPath>
 		<Options>/UseBaseUrl:false /GenerateClientInterfaces:true</Options>
 		<SourceUri>https://localhost:7133/swagger/v1/swagger.json</SourceUri>
     </OpenApiReference>
