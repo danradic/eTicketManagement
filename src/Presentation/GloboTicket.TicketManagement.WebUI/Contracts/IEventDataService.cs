@@ -1,4 +1,5 @@
 ﻿using GloboTicket.TicketManagement.App.Services.Base;
+using GloboTicket.TicketManagement.WebUI.Services;
 
 namespace GloboTicket.TicketManagement.WebUI.Contracts
 {

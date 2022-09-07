@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,8 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <OpenApiReference Include="OpenAPIs\swagger.json" CodeGenerator="NSwagCSharp" Namespace="GloboTicket.TicketManagement.WebUI" ClassName="ApiClient">
-      <SourceUri>https://localhost:7133/swagger/v1/swagger.json</SourceUri>
+    <OpenApiReference 
+		Include="OpenAPIs\swagger.json" 
+		CodeGenerator="NSwagCSharp" 
+		Namespace="GloboTicket.TicketManagement.WebUI.Services"
+		ClassName="ApiClient">
+		<OutputPath>$(ProjectDir)\Services\ApiClient.cs</OutputPath>
+		<Options>/UseBaseUrl:false /GenerateClientInterfaces:true</Options>
+		<SourceUri>https://localhost:7133/swagger/v1/swagger.json</SourceUri>
     </OpenApiReference>
   </ItemGroup>
 
