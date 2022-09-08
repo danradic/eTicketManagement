@@ -6,6 +6,7 @@ using GloboTicket.TicketManagement.Application.Contracts;
 using GloboTicket.TicketManagement.Infrastructure;
 using GloboTicket.TicketManagement.Persistence;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,6 +69,10 @@ builder.Services.AddCors(options =>
         .AllowAnyHeader());
         //.AllowCredentials());
 });
+
+builder.Host.UseSerilog((ctx, lc) => lc
+    .ReadFrom.Configuration(builder.Configuration)
+    .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day));
 
 var app = builder.Build();
 
