@@ -3,6 +3,7 @@ using GloboTicket.TicketManagement.Api.Services;
 using GloboTicket.TicketManagement.Api.Utility;
 using GloboTicket.TicketManagement.Application;
 using GloboTicket.TicketManagement.Application.Contracts;
+using GloboTicket.TicketManagement.Identity;
 using GloboTicket.TicketManagement.Infrastructure;
 using GloboTicket.TicketManagement.Persistence;
 using Microsoft.OpenApi.Models;
@@ -55,6 +56,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
 
 builder.Services.AddHttpContextAccessor();
 
@@ -64,10 +66,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("Open", builder => builder.AllowAnyOrigin()
-        .AllowAnyMethod()
-        .AllowAnyHeader());
-        //.AllowCredentials());
+    options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
 
 builder.Host.UseSerilog((ctx, lc) => lc
@@ -83,6 +82,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseAuthentication();
 
 app.UseSwagger();
 app.UseSwaggerUI(c =>
@@ -93,6 +93,8 @@ app.UseSwaggerUI(c =>
 app.UseCustomExceptionHandler();
 
 app.UseCors("Open");
+
+app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
