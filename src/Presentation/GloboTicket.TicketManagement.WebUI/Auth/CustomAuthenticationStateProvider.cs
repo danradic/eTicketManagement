@@ -13,7 +13,7 @@ namespace GloboTicket.TicketManagement.WebUI.Auth
     {
         private readonly ILocalStorageService _localStorage;
 
-        public CustomAuthenticationStateProvider( ILocalStorageService localStorage)
+        public CustomAuthenticationStateProvider(ILocalStorageService localStorage)
         {
             _localStorage = localStorage;
         }

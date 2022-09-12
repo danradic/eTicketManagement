@@ -3,9 +3,7 @@ using GloboTicket.TicketManagement.WebUI.Auth;
 using GloboTicket.TicketManagement.WebUI.Contracts;
 using GloboTicket.TicketManagement.WebUI.Services.Base;
 using Microsoft.AspNetCore.Components.Authorization;
-using System;
 using System.Net.Http.Headers;
-using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.WebUI.Services
 {
@@ -13,7 +11,11 @@ namespace GloboTicket.TicketManagement.WebUI.Services
     {
         private readonly AuthenticationStateProvider _authenticationStateProvider;
 
-        public AuthenticationService(IClient client, ILocalStorageService localStorage, AuthenticationStateProvider authenticationStateProvider) : base(client, localStorage)
+        public AuthenticationService(
+            IClient client, 
+            ILocalStorageService localStorage, 
+            AuthenticationStateProvider authenticationStateProvider
+            ) : base(client, localStorage)
         {
             _authenticationStateProvider = authenticationStateProvider;
         }
@@ -22,7 +24,7 @@ namespace GloboTicket.TicketManagement.WebUI.Services
         {
             try
             {
-                AuthenticationRequest authenticationRequest = new AuthenticationRequest() { Email = email, Password = password };
+                AuthenticationRequest authenticationRequest = new() { Email = email, Password = password };
                 var authenticationResponse = await _client.AuthenticateAsync(authenticationRequest);
 
                 if (authenticationResponse.Token != string.Empty)
@@ -42,7 +44,7 @@ namespace GloboTicket.TicketManagement.WebUI.Services
 
         public async Task<bool> Register(string firstName, string lastName, string userName, string email, string password)
         {
-            RegistrationRequest registrationRequest = new RegistrationRequest() { FirstName = firstName, LastName = lastName, Email = email, UserName = userName, Password = password };
+            RegistrationRequest registrationRequest = new() { FirstName = firstName, LastName = lastName, Email = email, UserName = userName, Password = password };
             var response = await _client.RegisterAsync(registrationRequest);
 
             if (!string.IsNullOrEmpty(response.UserId))

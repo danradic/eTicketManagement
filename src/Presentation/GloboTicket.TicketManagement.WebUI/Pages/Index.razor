@@ -1,9 +1,18 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<h1 class="page-title">Welcome to the GloboTicket Ticket Management System!</h1>
+<br />
+<h4>Using this application, you have access to all functionalities of GloboTicket.</h4>
 
-<h1>Hello, world!</h1>
+<br />
 
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+<AuthorizeView>
+    <Authorized>
+        <button @onclick="Logout">Logout</button>
+    </Authorized>
+    <NotAuthorized>
+        <button @onclick="NavigateToLogin">Click here to log in</button>
+        <br />
+        <button @onclick="NavigateToRegister">Click here to register</button>
+    </NotAuthorized>
+</AuthorizeView>

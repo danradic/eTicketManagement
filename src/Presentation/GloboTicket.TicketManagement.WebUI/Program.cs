@@ -20,10 +20,10 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddBlazoredLocalStorage(); //
 
-builder.Services.AddAuthorizationCore();
-builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+builder.Services.AddAuthorizationCore(); //
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>(); //
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7133") });
 
@@ -32,5 +32,6 @@ builder.Services.AddHttpClient<IClient, Client>(client => client.BaseAddress = n
 builder.Services.AddScoped<IEventDataService, EventDataService>();
 builder.Services.AddScoped<ICategoryDataService, CategoryDataService>();
 builder.Services.AddScoped<IOrderDataService, OrderDataService>();
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>(); //
 
 await builder.Build().RunAsync();
