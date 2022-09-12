@@ -17,9 +17,9 @@ namespace GloboTicket.TicketManagement.Identity
             SeedUsers(builder);
         }
 
-        private void SeedUsers(ModelBuilder builder)
+        private static void SeedUsers(ModelBuilder builder)
         {
-            ApplicationUser user = new ApplicationUser()
+            ApplicationUser user = new()
             {
                 FirstName = "John",
                 LastName = "Smith",
@@ -28,8 +28,8 @@ namespace GloboTicket.TicketManagement.Identity
                 EmailConfirmed = true
             };
 
-            PasswordHasher<ApplicationUser> passwordHasher = new PasswordHasher<ApplicationUser>();
-            passwordHasher.HashPassword(user, "Admin*123");
+            PasswordHasher<ApplicationUser> passwordHasher = new();
+            user.PasswordHash = passwordHasher.HashPassword(user, "Admin*123");
 
             builder.Entity<ApplicationUser>().HasData(user);
         }
