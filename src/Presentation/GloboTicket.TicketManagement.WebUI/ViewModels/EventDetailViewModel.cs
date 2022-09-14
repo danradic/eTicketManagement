@@ -12,7 +12,7 @@ namespace GloboTicket.TicketManagement.WebUI.ViewModels
         public string Name { get; set; }
 
         [Required]
-        [Range(0, int.MaxValue, ErrorMessage ="Price should be a positive value")]
+        [Range(1, int.MaxValue, ErrorMessage ="Price should be a positive value")]
         public int Price { get; set; }
 
         [Required]
