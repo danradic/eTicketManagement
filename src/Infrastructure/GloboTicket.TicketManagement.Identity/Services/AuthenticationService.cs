@@ -27,30 +27,31 @@ namespace GloboTicket.TicketManagement.Identity.Services
 
         public async Task<AuthenticationResponse> AuthenticateAsync(AuthenticationRequest request)
         {
+            AuthenticationResponse response = new();
+
             var user = await _userManager.FindByEmailAsync(request.Email);
 
             if (user == null)
             {
-                throw new Exception($"User with {request.Email} not found.");
+                response.ErrorMessage = $"User with {request.Email} not found.";
+                return response;
             }
 
             var result = await _signInManager.PasswordSignInAsync(user.UserName, request.Password, false, lockoutOnFailure: false);
 
             if (!result.Succeeded)
             {
-                throw new Exception($"Credentials for '{request.Email} aren't valid'.");
+                response.ErrorMessage = $"Credentials for '{request.Email} aren't valid'.";
+                return response;
             }
 
             JwtSecurityToken jwtSecurityToken = await GenerateToken(user);
-
-            AuthenticationResponse response = new AuthenticationResponse
-            {
-                Id = user.Id,
-                Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
-                Email = user.Email,
-                UserName = user.UserName
-            };
             
+            response.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
+            response.Id = user.Id;
+            response.Email = user.Email;
+            response.UserName = user.UserName;
+
             return response;
         }
 

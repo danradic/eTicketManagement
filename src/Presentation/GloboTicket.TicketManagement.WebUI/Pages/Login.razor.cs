@@ -27,11 +27,19 @@ namespace GloboTicket.TicketManagement.WebUI.Pages
 
         protected async void HandleValidSubmit()
         {
-            if (await AuthenticationService.Authenticate(LoginViewModel.Email, LoginViewModel.Password))
+            var response = await AuthenticationService.Authenticate(LoginViewModel.Email, LoginViewModel.Password);
+
+            if (response.Success == true)
             {
-                NavigationManager.NavigateTo("home");
+                NavigationManager.NavigateTo("/");
+                return;
             }
-            Message = "Username/password combination unknown";
+
+            Message = response.Message;
+            if (!string.IsNullOrEmpty(response.ValidationErrors))
+                Message += response.ValidationErrors;
+            StateHasChanged();
+
         }
     }
 }

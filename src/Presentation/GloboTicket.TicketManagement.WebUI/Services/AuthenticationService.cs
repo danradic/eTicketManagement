@@ -20,25 +20,34 @@ namespace GloboTicket.TicketManagement.WebUI.Services
             _authenticationStateProvider = authenticationStateProvider;
         }
 
-        public async Task<bool> Authenticate(string email, string password)
+        public async Task<ApiResponse<AuthenticationResponse>> Authenticate(string email, string password)
         {
+            ApiResponse<AuthenticationResponse> apiResponse = new();
+
             try
             {
                 AuthenticationRequest authenticationRequest = new() { Email = email, Password = password };
                 var authenticationResponse = await _client.AuthenticateAsync(authenticationRequest);
 
-                if (authenticationResponse.Token != string.Empty)
+                if (!string.IsNullOrEmpty(authenticationResponse.ErrorMessage))
                 {
-                    await _localStorage.SetItemAsync("token", authenticationResponse.Token);
-                    ((CustomAuthenticationStateProvider)_authenticationStateProvider).SetUserAuthenticated(email);
-                    _client.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", authenticationResponse.Token);
-                    return true;
+                    apiResponse.ValidationErrors = authenticationResponse.ErrorMessage;
+                    apiResponse.Success = false;
+                    return apiResponse;
                 }
-                return false;
+
+                await _localStorage.SetItemAsync("token", authenticationResponse.Token);
+                ((CustomAuthenticationStateProvider)_authenticationStateProvider).SetUserAuthenticated(email);
+                _client.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", authenticationResponse.Token);
+
+                apiResponse.Success = true;
+                apiResponse.Data = new AuthenticationResponse { Email = email };
+
+                return apiResponse;
             }
             catch 
             {
-                return false;
+                return apiResponse;
             }
         }
 
