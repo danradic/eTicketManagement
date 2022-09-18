@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace GloboTicket.TicketManagement.Application.Features.Orders.GetOrdersForMonth
 {
     public class PagedOrdersForMonthVm

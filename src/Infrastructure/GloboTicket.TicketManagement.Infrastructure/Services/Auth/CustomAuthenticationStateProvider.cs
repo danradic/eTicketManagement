@@ -7,7 +7,7 @@ using System.Security.Claims;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace GloboTicket.TicketManagement.BlazorWasm.Auth
+namespace GloboTicket.TicketManagement.Infrastructure.Services.Auth
 {
     public class CustomAuthenticationStateProvider : AuthenticationStateProvider
     {

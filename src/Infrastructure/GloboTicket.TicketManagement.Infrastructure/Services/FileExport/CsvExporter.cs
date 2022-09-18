@@ -1,9 +1,9 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
-using GloboTicket.TicketManagement.Application.Contracts.Infrastructure;
+using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services.FileExport;
 using System.Globalization;
 
-namespace GloboTicket.TicketManagement.Infrastructure.FileExport
+namespace GloboTicket.TicketManagement.Infrastructure.Services.FileExport
 {
     public class CsvExporter : ICsvExporter
     {

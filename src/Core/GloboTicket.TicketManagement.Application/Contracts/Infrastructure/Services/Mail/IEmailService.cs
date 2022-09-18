@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GloboTicket.TicketManagement.Application.Contracts.Infrastructure
+namespace GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services.Mail
 {
     public interface IEmailService
     {

@@ -1,39 +1,41 @@
 ﻿using AutoMapper;
 using Blazored.LocalStorage;
-using GloboTicket.TicketManagement.BlazorWasm.Contracts;
-using GloboTicket.TicketManagement.BlazorWasm.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.ApiClients.TicketManagement;
+using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services;
+using GloboTicket.TicketManagement.Application.Exceptions;
+using GloboTicket.TicketManagement.Application.Features.Events.Commands.CreateEvent;
+using GloboTicket.TicketManagement.Application.Features.Events.Commands.UpdateEvent;
+using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventDetail;
+using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventsList;
+using GloboTicket.TicketManagement.Application.Responses;
 
-namespace GloboTicket.TicketManagement.Infrastructure.ApiClients.TicketManagement
+namespace GloboTicket.TicketManagement.Infrastructure.Services
 {
     public class EventDataService : BaseDataService, IEventDataService
     {
 
         private readonly IMapper _mapper;
 
-        public EventDataService(IClient client, IMapper mapper, ILocalStorageService localStorage) : base(client, localStorage)
+        public EventDataService(ITicketManagementApiClient client, IMapper mapper, ILocalStorageService localStorage) : base(client, localStorage)
         {
             _mapper = mapper;
         }
 
-        public async Task<List<EventListViewModel>> GetAllEvents()
+        public async Task<List<EventListVm>> GetAllEvents()
         {
             var allEvents = await _client.GetAllEventsAsync();
-            var mappedEvents = _mapper.Map<ICollection<EventListViewModel>>(allEvents);
-            return mappedEvents.ToList();
+            //var mappedEvents = _mapper.Map<ICollection<EventListViewModel>>(allEvents);
+            return allEvents.ToList();
         }
 
-        public async Task<EventDetailViewModel> GetEventById(Guid id)
+        public async Task<EventDetailVm> GetEventById(Guid id)
         {
             var selectedEvent = await _client.GetEventByIdAsync(id);
-            var mappedEvent = _mapper.Map<EventDetailViewModel>(selectedEvent);
-            return mappedEvent;
+            //var mappedEvent = _mapper.Map<EventDetailViewModel>(selectedEvent);
+            return selectedEvent;
         }
 
-        public async Task<ApiResponse<Guid>> CreateEvent(EventDetailViewModel eventDetailViewModel)
+        public async Task<ApiResponse<Guid>> CreateEvent(EventDetailVm eventDetailViewModel)
         {
             try
             {
@@ -47,7 +49,7 @@ namespace GloboTicket.TicketManagement.Infrastructure.ApiClients.TicketManagemen
             }
         }
 
-        public async Task<ApiResponse<Guid>> UpdateEvent(EventDetailViewModel eventDetailViewModel)
+        public async Task<ApiResponse<Guid>> UpdateEvent(EventDetailVm eventDetailViewModel)
         {
             try
             {

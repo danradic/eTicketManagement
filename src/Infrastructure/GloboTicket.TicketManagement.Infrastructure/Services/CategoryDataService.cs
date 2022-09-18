@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
 using Blazored.LocalStorage;
 using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.ApiClients.TicketManagement;
+using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services;
 using GloboTicket.TicketManagement.Application.Exceptions;
 using GloboTicket.TicketManagement.Application.Features.Categories.Commands.CreateCateogry;
 using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesList;
 using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
 using GloboTicket.TicketManagement.Application.Responses;
 
-namespace GloboTicket.TicketManagement.Infrastructure.ApiClients.TicketManagement
+namespace GloboTicket.TicketManagement.Infrastructure.Services
 {
     public class CategoryDataService : BaseDataService, ICategoryDataService
     {

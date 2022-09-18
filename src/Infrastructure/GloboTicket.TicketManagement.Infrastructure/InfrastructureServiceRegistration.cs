@@ -1,7 +1,8 @@
-﻿using GloboTicket.TicketManagement.Application.Contracts.Infrastructure;
+﻿using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services.FileExport;
+using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services.Mail;
 using GloboTicket.TicketManagement.Application.Models.Mail;
-using GloboTicket.TicketManagement.Infrastructure.FileExport;
-using GloboTicket.TicketManagement.Infrastructure.Mail;
+using GloboTicket.TicketManagement.Infrastructure.Services.FileExport;
+using GloboTicket.TicketManagement.Infrastructure.Services.Mail;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -1,18 +1,17 @@
 ﻿using AutoMapper;
 using Blazored.LocalStorage;
-using GloboTicket.TicketManagement.BlazorWasm.Contracts;
-using GloboTicket.TicketManagement.BlazorWasm.ViewModels;
-using System;
-using System.Threading.Tasks;
+using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.ApiClients.TicketManagement;
+using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services;
+using GloboTicket.TicketManagement.Application.Features.Orders.GetOrdersForMonth;
 
-namespace GloboTicket.TicketManagement.Infrastructure.ApiClients.TicketManagement
+namespace GloboTicket.TicketManagement.Infrastructure.Services
 {
     public class OrderDataService : BaseDataService, IOrderDataService
     {
         private readonly IMapper _mapper;
 
         public OrderDataService(
-            IClient client,
+            ITicketManagementApiClient client,
             IMapper mapper,
             ILocalStorageService localStorage)
             : base(client, localStorage)
@@ -20,14 +19,14 @@ namespace GloboTicket.TicketManagement.Infrastructure.ApiClients.TicketManagemen
             _mapper = mapper;
         }
 
-        public async Task<PagedOrderForMonthViewModel> GetPagedOrderForMonth(
+        public async Task<PagedOrdersForMonthVm> GetPagedOrderForMonth(
             DateTime date,
             int page,
             int size)
         {
             var orders = await _client.GetPagedOrdersForMonthAsync(date, page, size);
-            var mappedOrders = _mapper.Map<PagedOrderForMonthViewModel>(orders);
-            return mappedOrders;
+            //var mappedOrders = _mapper.Map<PagedOrderForMonthViewModel>(orders);
+            return orders;
         }
     }
 }

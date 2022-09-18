@@ -4,7 +4,7 @@ using GloboTicket.TicketManagement.Application.Exceptions;
 using GloboTicket.TicketManagement.Application.Responses;
 using System.Net.Http.Headers;
 
-namespace GloboTicket.TicketManagement.Infrastructure.ApiClients.TicketManagement
+namespace GloboTicket.TicketManagement.Infrastructure.Services
 {
     public class BaseDataService
     {

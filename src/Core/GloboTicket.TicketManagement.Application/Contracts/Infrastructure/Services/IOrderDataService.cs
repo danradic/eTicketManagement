@@ -1,6 +1,6 @@
 ﻿using GloboTicket.TicketManagement.Application.Features.Orders.GetOrdersForMonth;
 
-namespace GloboTicket.TicketManagement.BlazorWasm.Contracts
+namespace GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services
 {
     public interface IOrderDataService
     {

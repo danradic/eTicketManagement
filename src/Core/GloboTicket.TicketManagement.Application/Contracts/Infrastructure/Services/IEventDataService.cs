@@ -2,7 +2,7 @@
 using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventsList;
 using GloboTicket.TicketManagement.Application.Responses;
 
-namespace GloboTicket.TicketManagement.BlazorWasm.Contracts
+namespace GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services
 {
     public interface IEventDataService
     {

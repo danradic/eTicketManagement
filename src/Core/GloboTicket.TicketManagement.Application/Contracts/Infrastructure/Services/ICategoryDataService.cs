@@ -3,7 +3,7 @@ using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCa
 using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
 using GloboTicket.TicketManagement.Application.Responses;
 
-namespace GloboTicket.TicketManagement.Application.Contracts.Infrastructure.ApiClients.TicketManagement
+namespace GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services
 {
     public interface ICategoryDataService
     {
