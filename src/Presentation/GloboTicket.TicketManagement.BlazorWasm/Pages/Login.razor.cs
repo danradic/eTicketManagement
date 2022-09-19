@@ -1,4 +1,5 @@
-﻿using GloboTicket.TicketManagement.BlazorWasm.Contracts;
+﻿using GloboTicket.TicketManagement.Application.Contracts.Identity;
+using GloboTicket.TicketManagement.Application.Models.Authentication;
 using GloboTicket.TicketManagement.BlazorWasm.ViewModels;
 using Microsoft.AspNetCore.Components;
 
@@ -27,17 +28,18 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
 
         protected async void HandleValidSubmit()
         {
-            var response = await AuthenticationService.Authenticate(LoginViewModel.Email, LoginViewModel.Password);
+            var authenticationRequest = new AuthenticationRequest() { Email = LoginViewModel.Email, Password = LoginViewModel.Password };
+            var response = await AuthenticationService.AuthenticateAsync(authenticationRequest);
 
-            if (response.Success == true)
+            if (string.IsNullOrEmpty(response.ErrorMessage))
             {
                 NavigationManager.NavigateTo("/");
                 return;
             }
 
-            Message = response.Message;
-            if (!string.IsNullOrEmpty(response.ValidationErrors))
-                Message += response.ValidationErrors;
+            Message = response.ErrorMessage;
+            //if (!string.IsNullOrEmpty(response.ValidationErrors))
+            //    Message += response.ValidationErrors;
             StateHasChanged();
 
         }

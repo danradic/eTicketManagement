@@ -1,8 +1,6 @@
-﻿using GloboTicket.TicketManagement.BlazorWasm.Contracts;
-using GloboTicket.TicketManagement.BlazorWasm.ViewModels;
+﻿using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services;
+using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
 using Microsoft.AspNetCore.Components;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.BlazorWasm.Pages
 {
@@ -14,7 +12,7 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
-        public ICollection<CategoryEventsViewModel> Categories { get; set; }
+        public ICollection<CategoryEventListVm> Categories { get; set; }
 
         protected async override Task OnInitializedAsync()
         {

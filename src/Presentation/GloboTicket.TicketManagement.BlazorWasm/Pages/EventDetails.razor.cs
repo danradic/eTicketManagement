@@ -1,11 +1,11 @@
-﻿using GloboTicket.TicketManagement.BlazorWasm.Contracts;
-using GloboTicket.TicketManagement.BlazorWasm.Services.Base;
+﻿using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services;
+using GloboTicket.TicketManagement.Application.Features.Categories.Commands.CreateCateogry;
+using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesList;
+using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventDetail;
+using GloboTicket.TicketManagement.Application.Responses;
 using GloboTicket.TicketManagement.BlazorWasm.ViewModels;
 using Microsoft.AspNetCore.Components;
-using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.BlazorWasm.Pages
 {
@@ -20,11 +20,11 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
-        public EventDetailViewModel EventDetailViewModel { get; set; } 
-            = new EventDetailViewModel() { Date = DateTime.Now.AddDays(1) };
+        public EventDetailVm EventDetailViewModel { get; set; } 
+            = new() { Date = DateTime.Now.AddDays(1) };
 
-        public ObservableCollection<CategoryViewModel> Categories { get; set; } 
-            = new ObservableCollection<CategoryViewModel>();
+        public ObservableCollection<CategoryListVm> Categories { get; set; } 
+            = new ObservableCollection<CategoryListVm>();
 
         public string Message { get; set; }
         public string SelectedCategoryId { get; set; }
@@ -39,11 +39,12 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
             {
                 EventDetailViewModel = await EventDataService.GetEventById(SelectedEventId);
                 SelectedCategoryId = EventDetailViewModel.CategoryId.ToString();
+                //return;
             }
 
             var list = await CategoryDataService.GetAllCategories();
-            Categories = new ObservableCollection<CategoryViewModel>(list);
-            SelectedCategoryId = Categories.FirstOrDefault().CategoryId.ToString();
+            Categories = new ObservableCollection<CategoryListVm>(list);
+            //SelectedCategoryId = Categories.FirstOrDefault().CategoryId.ToString();
         }
 
         protected async Task HandleValidSubmit()

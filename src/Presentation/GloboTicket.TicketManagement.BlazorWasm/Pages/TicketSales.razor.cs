@@ -1,11 +1,8 @@
-﻿using GloboTicket.TicketManagement.BlazorWasm.Components;
-using GloboTicket.TicketManagement.BlazorWasm.Contracts;
+﻿using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services;
+using GloboTicket.TicketManagement.Application.Features.Orders.GetOrdersForMonth;
+using GloboTicket.TicketManagement.BlazorWasm.Components;
 using GloboTicket.TicketManagement.BlazorWasm.ViewModels;
 using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.BlazorWasm.Pages
 {
@@ -26,17 +23,17 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
 
         private int? pageNumber = 1;
 
-        private PaginatedList<OrdersForMonthListViewModel> paginatedList 
-            = new PaginatedList<OrdersForMonthListViewModel>();
+        private PaginatedList<OrdersForMonthDto> paginatedList 
+            = new PaginatedList<OrdersForMonthDto>();
 
-        private IEnumerable<OrdersForMonthListViewModel> ordersList;
+        private IEnumerable<OrdersForMonthDto> ordersList;
 
         protected async Task GetSales()
         {
             DateTime dt = new DateTime(int.Parse(SelectedYear), int.Parse(SelectedMonth), 1);
 
             var orders = await OrderDataService.GetPagedOrderForMonth(dt, pageNumber.Value, 5);
-            paginatedList = new PaginatedList<OrdersForMonthListViewModel>(orders.OrdersForMonth.ToList(), orders.Count, pageNumber.Value, 5);
+            paginatedList = new PaginatedList<OrdersForMonthDto>(orders.OrdersForMonth.ToList(), orders.Count, pageNumber.Value, 5);
             ordersList = paginatedList.Items;
 
             StateHasChanged();

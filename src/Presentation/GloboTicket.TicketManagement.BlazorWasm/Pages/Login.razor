@@ -5,7 +5,7 @@
         <h3 class="card-title">Login to GloboTicket</h3>
         <div class="card-body">
             <EditForm Model="@LoginViewModel" OnValidSubmit="HandleValidSubmit">
-                <DataAnnotationsValidator />
+                @*<DataAnnotationsValidator />*@
                 <div class="input-group row mt-2">
                     <label class="col-12 col-md-4 p-0" for="userName">Email:</label>
                     <InputText id="userName" class="col-12 col-md-8 login-field" @bind-Value="LoginViewModel.Email"></InputText>

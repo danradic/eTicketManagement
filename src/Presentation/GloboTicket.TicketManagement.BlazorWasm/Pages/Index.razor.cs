@@ -1,8 +1,7 @@
-﻿using GloboTicket.TicketManagement.BlazorWasm.Auth;
-using GloboTicket.TicketManagement.BlazorWasm.Contracts;
+﻿using GloboTicket.TicketManagement.Application.Contracts.Identity;
+using GloboTicket.TicketManagement.Infrastructure.Services.Auth;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.BlazorWasm.Pages
 {

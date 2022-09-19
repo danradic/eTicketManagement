@@ -2,7 +2,7 @@
 using GloboTicket.TicketManagement.Application.Contracts.Identity;
 using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.ApiClients.TicketManagement;
 using GloboTicket.TicketManagement.Application.Models.Authentication;
-using GloboTicket.TicketManagement.Application.Responses;
+using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Headers;
 
 namespace GloboTicket.TicketManagement.Infrastructure.Services.Auth

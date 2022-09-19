@@ -1,9 +1,7 @@
-﻿using GloboTicket.TicketManagement.BlazorWasm.Contracts;
-using GloboTicket.TicketManagement.BlazorWasm.Services;
-using GloboTicket.TicketManagement.BlazorWasm.Services.Base;
-using GloboTicket.TicketManagement.BlazorWasm.ViewModels;
+﻿using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services;
+using GloboTicket.TicketManagement.Application.Features.Categories.Commands.CreateCateogry;
+using GloboTicket.TicketManagement.Application.Responses;
 using Microsoft.AspNetCore.Components;
-using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.BlazorWasm.Pages
 {
@@ -15,12 +13,12 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
-        public CategoryViewModel CategoryViewModel { get; set; }
+        public CategoryVm CategoryViewModel { get; set; }
         public string Message { get; set; }
 
         protected override void OnInitialized()
         {
-            CategoryViewModel = new CategoryViewModel();
+            CategoryViewModel = new CategoryVm();
         }
 
         protected async Task HandleValidSubmit()
@@ -29,7 +27,7 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
             HandleResponse(response);
         }
 
-        private void HandleResponse(ApiResponse<CategoryDto> response)
+        private void HandleResponse(ApiResponse<CreateCategoryDto> response)
         {
             if (response.Success)
             {

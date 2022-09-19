@@ -1,4 +1,5 @@
-﻿using GloboTicket.TicketManagement.BlazorWasm.Contracts;
+﻿using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services;
+using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventsList;
 using GloboTicket.TicketManagement.BlazorWasm.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -17,7 +18,7 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
-        public ICollection<EventListViewModel> Events { get; set; }
+        public ICollection<EventListVm> Events { get; set; }
 
         [Inject]
         public IJSRuntime JSRuntime { get; set; }
