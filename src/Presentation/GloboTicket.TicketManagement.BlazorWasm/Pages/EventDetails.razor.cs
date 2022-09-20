@@ -23,7 +23,7 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
         public EventDetailVm EventDetailViewModel { get; set; } 
             = new() { Date = DateTime.Now.AddDays(1) };
 
-        public ObservableCollection<CategoryListVm> Categories { get; set; } 
+        public ObservableCollection<CategoryListVm> Categories { get; set; }
             = new ObservableCollection<CategoryListVm>();
 
         public string Message { get; set; }
@@ -39,12 +39,15 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
             {
                 EventDetailViewModel = await EventDataService.GetEventById(SelectedEventId);
                 SelectedCategoryId = EventDetailViewModel.CategoryId.ToString();
-                //return;
             }
 
             var list = await CategoryDataService.GetAllCategories();
             Categories = new ObservableCollection<CategoryListVm>(list);
-            //SelectedCategoryId = Categories.FirstOrDefault().CategoryId.ToString();
+
+            if (string.IsNullOrEmpty(SelectedCategoryId)) 
+            { 
+                SelectedCategoryId = Categories.FirstOrDefault().CategoryId.ToString();
+            }
         }
 
         protected async Task HandleValidSubmit()
