@@ -20,7 +20,7 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
-        public EventDetailVm EventDetailViewModel { get; set; } 
+        public EventDetailVm EventDetailVm { get; set; } 
             = new() { Date = DateTime.Now.AddDays(1) };
 
         public ObservableCollection<CategoryListVm> Categories { get; set; }
@@ -37,8 +37,8 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
         {
             if (Guid.TryParse(EventId, out SelectedEventId))
             {
-                EventDetailViewModel = await EventDataService.GetEventById(SelectedEventId);
-                SelectedCategoryId = EventDetailViewModel.CategoryId.ToString();
+                EventDetailVm = await EventDataService.GetEventById(SelectedEventId);
+                SelectedCategoryId = EventDetailVm.CategoryId.ToString();
             }
 
             var list = await CategoryDataService.GetAllCategories();
@@ -52,16 +52,16 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
 
         protected async Task HandleValidSubmit()
         {
-            EventDetailViewModel.CategoryId = Guid.Parse(SelectedCategoryId);
+            EventDetailVm.CategoryId = Guid.Parse(SelectedCategoryId);
             ApiResponse<Guid> response;
 
             if (SelectedEventId == Guid.Empty)
             {
-                response = await EventDataService.CreateEvent(EventDetailViewModel);
+                response = await EventDataService.CreateEvent(EventDetailVm);
             }
             else
             {
-                 response = await EventDataService.UpdateEvent(EventDetailViewModel);
+                 response = await EventDataService.UpdateEvent(EventDetailVm);
             }
             HandleResponse(response);
 

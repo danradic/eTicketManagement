@@ -1,49 +1,48 @@
 ﻿@page "/eventdetails"
 @page "/eventdetails/{eventid}"
 
-<h1 class="page-title">Details for @EventDetailViewModel.Name</h1>
+<h1 class="page-title">Details for @EventDetailVm.Name</h1>
 
 @Message
 
-<EditForm Model="@EventDetailViewModel" OnValidSubmit="@HandleValidSubmit">
-    @*<DataAnnotationsValidator />*@
-    <ValidationSummary></ValidationSummary>
+<EditForm Model="@EventDetailVm" OnValidSubmit="@HandleValidSubmit">
+    <FluentValidationValidator />
 
     <div class="form-group row">
         <label for="name" class="col-sm-3">Event name: </label>
-        <InputText id="name" class="form-control col-sm-8" @bind-Value="@EventDetailViewModel.Name" placeholder="Enter event name"></InputText>
-        <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => EventDetailViewModel.Name)" />
+        <InputText id="name" class="form-control col-sm-8" @bind-Value="@EventDetailVm.Name" placeholder="Enter event name"></InputText>
+        <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => EventDetailVm.Name)" />
     </div>
 
     <div class="form-group row">
         <label for="price" class="col-sm-3">Ticket price: </label>
-        <InputNumber id="phonenumber" class="form-control col-sm-8" @bind-Value="@EventDetailViewModel.Price" placeholder="Enter price"></InputNumber>
-        <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => EventDetailViewModel.Price)" />
+        <InputNumber id="phonenumber" class="form-control col-sm-8" @bind-Value="@EventDetailVm.Price" placeholder="Enter price"></InputNumber>
+        <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => EventDetailVm.Price)" />
 
     </div>
 
     <div class="form-group row">
         <label for="artist" class="col-sm-3">Artist name: </label>
-        <InputText id="artist" class="form-control col-sm-8" @bind-Value="@EventDetailViewModel.Artist" placeholder="Enter artist"></InputText>
-        <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => EventDetailViewModel.Artist)" />
+        <InputText id="artist" class="form-control col-sm-8" @bind-Value="@EventDetailVm.Artist" placeholder="Enter artist"></InputText>
+        <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => EventDetailVm.Artist)" />
 
     </div>
 
     <div class="form-group row">
         <label for="date" class="col-sm-3">Event date: </label>
-        <InputDate id="date" class="form-control col-sm-8" @bind-Value="@EventDetailViewModel.Date"></InputDate>
+        <InputDate id="date" class="form-control col-sm-8" @bind-Value="@EventDetailVm.Date"></InputDate>
     </div>
 
     <div class="form-group row">
         <label for="description" class="col-sm-3">Description: </label>
-        <InputTextArea id="description" class="form-control col-sm-8" @bind-Value="@EventDetailViewModel.Description" placeholder="Enter description"></InputTextArea>
-        <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => EventDetailViewModel.Description)" />
+        <InputTextArea id="description" class="form-control col-sm-8" @bind-Value="@EventDetailVm.Description" placeholder="Enter description"></InputTextArea>
+        <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => EventDetailVm.Description)" />
     </div>
 
     <div class="form-group row">
         <label for="imageurl" class="col-sm-3">Image: </label>
-        <InputText id="imageurl" class="form-control col-sm-8" @bind-Value="@EventDetailViewModel.ImageUrl" placeholder="Enter image URL"></InputText>
-        <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => EventDetailViewModel.ImageUrl)" />
+        <InputText id="imageurl" class="form-control col-sm-8" @bind-Value="@EventDetailVm.ImageUrl" placeholder="Enter image URL"></InputText>
+        <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => EventDetailVm.ImageUrl)" />
     </div>
 
     <div class="form-group row">
