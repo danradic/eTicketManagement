@@ -34,7 +34,7 @@ namespace GloboTicket.TicketManagement.Identity.Services
 
             if (user == null)
             {
-                response.ErrorMessage = $"User with {request.Email} not found.";
+                response.ErrorMessage = $"User with email '{request.Email}' not found.";
                 return response;
             }
 
@@ -42,7 +42,7 @@ namespace GloboTicket.TicketManagement.Identity.Services
 
             if (!result.Succeeded)
             {
-                response.ErrorMessage = $"Credentials for '{request.Email} aren't valid'.";
+                response.ErrorMessage = $"Credentials for '{request.Email}' aren't valid.";
                 return response;
             }
 
