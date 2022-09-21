@@ -1,13 +1,13 @@
 ﻿using GloboTicket.TicketManagement.Application.Contracts.Identity;
+using GloboTicket.TicketManagement.Application.Features.Login;
 using GloboTicket.TicketManagement.Application.Models.Authentication;
-using GloboTicket.TicketManagement.BlazorWasm.ViewModels;
 using Microsoft.AspNetCore.Components;
 
 namespace GloboTicket.TicketManagement.BlazorWasm.Features.Login
 {
     public partial class LoginPage
     {
-        public LoginViewModel LoginViewModel { get; set; }
+        public LoginVm LoginViewModel { get; set; }
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
@@ -23,7 +23,7 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Features.Login
 
         protected override void OnInitialized()
         {
-            LoginViewModel = new LoginViewModel();
+            LoginViewModel = new LoginVm();
         }
 
         protected async void HandleValidSubmit()

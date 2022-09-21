@@ -1,14 +1,15 @@
 ﻿using GloboTicket.TicketManagement.Application.Contracts.Identity;
+using GloboTicket.TicketManagement.Application.Features.Register;
 using GloboTicket.TicketManagement.Application.Models.Authentication;
-using GloboTicket.TicketManagement.BlazorWasm.ViewModels;
 using Microsoft.AspNetCore.Components;
+using SendGrid;
 
 namespace GloboTicket.TicketManagement.BlazorWasm.Features.Register
 {
     public partial class RegisterPage
     {
 
-        public RegisterViewModel RegisterViewModel { get; set; }
+        public RegisterVm RegisterViewModel { get; set; }
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
@@ -24,7 +25,7 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Features.Register
         }
         protected override void OnInitialized()
         {
-            RegisterViewModel = new RegisterViewModel();
+            RegisterViewModel = new RegisterVm();
         }
 
         protected async void HandleValidSubmit()
@@ -38,14 +39,16 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Features.Register
                 Password = RegisterViewModel.Password
             };
 
-            var result = await AuthenticationService.RegisterAsync(registrationRequest);
+            var registrationResponse = await AuthenticationService.RegisterAsync(registrationRequest);
 
-            if (!string.IsNullOrEmpty(result.UserId))
+            if (!string.IsNullOrEmpty(registrationResponse.UserId))
             {
                 NavigationManager.NavigateTo("home");
                 return;
             }
-            Message = "Something went wrong, please try again.";
+
+            Message = registrationResponse.ErrorMessage;
+            StateHasChanged();
         }
     }
 }

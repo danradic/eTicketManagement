@@ -1,12 +1,7 @@
 ﻿using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services;
 using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventsList;
-using GloboTicket.TicketManagement.BlazorWasm.ViewModels;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.BlazorWasm.Features.Events
 {
