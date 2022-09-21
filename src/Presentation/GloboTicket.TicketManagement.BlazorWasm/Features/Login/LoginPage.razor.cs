@@ -3,12 +3,12 @@ using GloboTicket.TicketManagement.Application.Models.Authentication;
 using GloboTicket.TicketManagement.BlazorWasm.ViewModels;
 using Microsoft.AspNetCore.Components;
 
-namespace GloboTicket.TicketManagement.BlazorWasm.Pages
+namespace GloboTicket.TicketManagement.BlazorWasm.Features.Login
 {
-    public partial class Login
+    public partial class LoginPage
     {
         public LoginViewModel LoginViewModel { get; set; }
-        
+
         [Inject]
         public NavigationManager NavigationManager { get; set; }
         public string Message { get; set; }
@@ -16,9 +16,9 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
         [Inject]
         private IAuthenticationService AuthenticationService { get; set; }
 
-        public Login()
+        public LoginPage()
         {
-            
+
         }
 
         protected override void OnInitialized()
@@ -38,10 +38,7 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
             }
 
             Message = response.ErrorMessage;
-            //if (!string.IsNullOrEmpty(response.ValidationErrors))
-            //    Message += response.ValidationErrors;
             StateHasChanged();
-
         }
     }
 }

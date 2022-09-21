@@ -3,9 +3,9 @@ using GloboTicket.TicketManagement.Application.Models.Authentication;
 using GloboTicket.TicketManagement.BlazorWasm.ViewModels;
 using Microsoft.AspNetCore.Components;
 
-namespace GloboTicket.TicketManagement.BlazorWasm.Pages
+namespace GloboTicket.TicketManagement.BlazorWasm.Features.Register
 {
-    public partial class Register
+    public partial class RegisterPage
     {
 
         public RegisterViewModel RegisterViewModel { get; set; }
@@ -18,7 +18,7 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
         [Inject]
         private IAuthenticationService AuthenticationService { get; set; }
 
-        public Register()
+        public RegisterPage()
         {
 
         }

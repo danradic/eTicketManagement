@@ -1,15 +1,13 @@
 ﻿using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services;
-using GloboTicket.TicketManagement.Application.Features.Categories.Commands.CreateCateogry;
 using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesList;
 using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventDetail;
 using GloboTicket.TicketManagement.Application.Responses;
-using GloboTicket.TicketManagement.BlazorWasm.ViewModels;
 using Microsoft.AspNetCore.Components;
 using System.Collections.ObjectModel;
 
-namespace GloboTicket.TicketManagement.BlazorWasm.Pages
+namespace GloboTicket.TicketManagement.BlazorWasm.Features.Events
 {
-    public partial class EventDetails
+    public partial class EventDetailsPage
     {
         [Inject]
         public IEventDataService EventDataService { get; set; }
@@ -20,7 +18,7 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
-        public EventDetailVm EventDetailVm { get; set; } 
+        public EventDetailVm EventDetailVm { get; set; }
             = new() { Date = DateTime.Now.AddDays(1) };
 
         public ObservableCollection<CategoryListVm> Categories { get; set; }
@@ -44,8 +42,8 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
             var list = await CategoryDataService.GetAllCategories();
             Categories = new ObservableCollection<CategoryListVm>(list);
 
-            if (string.IsNullOrEmpty(SelectedCategoryId)) 
-            { 
+            if (string.IsNullOrEmpty(SelectedCategoryId))
+            {
                 SelectedCategoryId = Categories.FirstOrDefault().CategoryId.ToString();
             }
         }
@@ -61,7 +59,7 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
             }
             else
             {
-                 response = await EventDataService.UpdateEvent(EventDetailVm);
+                response = await EventDataService.UpdateEvent(EventDetailVm);
             }
             HandleResponse(response);
 

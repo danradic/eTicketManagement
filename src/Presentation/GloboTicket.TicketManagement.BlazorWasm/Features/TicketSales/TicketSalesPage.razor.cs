@@ -1,12 +1,11 @@
 ﻿using GloboTicket.TicketManagement.Application.Contracts.Infrastructure.Services;
 using GloboTicket.TicketManagement.Application.Features.Orders.GetOrdersForMonth;
-using GloboTicket.TicketManagement.BlazorWasm.Components;
-using GloboTicket.TicketManagement.BlazorWasm.ViewModels;
+using GloboTicket.TicketManagement.BlazorWasm.Features.Pagination;
 using Microsoft.AspNetCore.Components;
 
-namespace GloboTicket.TicketManagement.BlazorWasm.Pages
+namespace GloboTicket.TicketManagement.BlazorWasm.Features.TicketSales
 {
-    public partial class TicketSales
+    public partial class TicketSalesPage
     {
 
         [Inject]
@@ -23,7 +22,7 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
 
         private int? pageNumber = 1;
 
-        private PaginatedList<OrdersForMonthDto> paginatedList 
+        private PaginatedList<OrdersForMonthDto> paginatedList
             = new PaginatedList<OrdersForMonthDto>();
 
         private IEnumerable<OrdersForMonthDto> ordersList;

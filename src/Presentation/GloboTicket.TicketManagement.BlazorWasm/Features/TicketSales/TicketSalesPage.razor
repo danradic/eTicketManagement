@@ -1,5 +1,5 @@
 ﻿@page "/ticketsales"
-@using GloboTicket.TicketManagement.BlazorWasm.Components
+@using GloboTicket.TicketManagement.BlazorWasm.Features.Pagination
 
 <h3 class="mb-5">Ticket Sales</h3>
 
@@ -56,10 +56,10 @@ else
     </table>
 
 
-    <Pager PageIndex="@paginatedList.PageIndex" 
+    <PaginationComponent PageIndex="@paginatedList.PageIndex"
         TotalPages=@paginatedList.TotalPages 
         OnClick="PageIndexChanged"
         HasNextPage=@paginatedList.HasNextPage 
         HasPreviousPage=@paginatedList.HasPreviousPage>
-    </Pager>
+    </PaginationComponent>
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace GloboTicket.TicketManagement.BlazorWasm.Components
+namespace GloboTicket.TicketManagement.BlazorWasm.Features.Pagination
 {
-    public partial class Pager
+    public partial class PaginationComponent
     {
         [Parameter]
         public int PageIndex { get; set; }

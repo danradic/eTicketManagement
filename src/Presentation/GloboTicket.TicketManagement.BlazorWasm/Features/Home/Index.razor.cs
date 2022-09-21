@@ -3,7 +3,7 @@ using GloboTicket.TicketManagement.Infrastructure.Services.Auth;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 
-namespace GloboTicket.TicketManagement.BlazorWasm.Pages
+namespace GloboTicket.TicketManagement.BlazorWasm.Features.Home
 {
     public partial class Index
     {

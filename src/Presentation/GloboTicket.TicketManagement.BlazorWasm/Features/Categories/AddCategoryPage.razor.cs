@@ -3,9 +3,9 @@ using GloboTicket.TicketManagement.Application.Features.Categories.Commands.Crea
 using GloboTicket.TicketManagement.Application.Responses;
 using Microsoft.AspNetCore.Components;
 
-namespace GloboTicket.TicketManagement.BlazorWasm.Pages
+namespace GloboTicket.TicketManagement.BlazorWasm.Features.Categories
 {
-    public partial class AddCategory
+    public partial class AddCategoryPage
     {
         [Inject]
         public ICategoryDataService CategoryDataService { get; set; }

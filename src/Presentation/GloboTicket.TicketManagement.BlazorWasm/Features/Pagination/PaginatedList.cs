@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GloboTicket.TicketManagement.BlazorWasm.Components
+namespace GloboTicket.TicketManagement.BlazorWasm.Features.Pagination
 {
     public class PaginatedList<T>
     {
@@ -28,7 +28,7 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Components
         {
             get
             {
-                return (PageIndex > 1);
+                return PageIndex > 1;
             }
             set { }
         }
@@ -37,7 +37,7 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Components
         {
             get
             {
-                return (PageIndex < TotalPages);
+                return PageIndex < TotalPages;
             }
             set { }
         }

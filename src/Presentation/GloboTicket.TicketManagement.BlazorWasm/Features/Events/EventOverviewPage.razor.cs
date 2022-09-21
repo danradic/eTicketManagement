@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace GloboTicket.TicketManagement.BlazorWasm.Pages
+namespace GloboTicket.TicketManagement.BlazorWasm.Features.Events
 {
-    public partial class EventOverview
+    public partial class EventOverviewPage
     {
         [Inject]
         public IEventDataService EventDataService { get; set; }

@@ -2,12 +2,12 @@
 using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesListWithEvents;
 using Microsoft.AspNetCore.Components;
 
-namespace GloboTicket.TicketManagement.BlazorWasm.Pages
+namespace GloboTicket.TicketManagement.BlazorWasm.Features.Categories
 {
-    public partial class CategoryOverview
+    public partial class CategoryOverviewPage
     {
         [Inject]
-        public ICategoryDataService CategoryDataService{ get; set; }
+        public ICategoryDataService CategoryDataService { get; set; }
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
@@ -21,7 +21,7 @@ namespace GloboTicket.TicketManagement.BlazorWasm.Pages
 
         protected async void OnIncludeHistoryChanged(ChangeEventArgs args)
         {
-            if((bool)args.Value)
+            if ((bool)args.Value)
             {
                 Categories = await CategoryDataService.GetAllCategoriesWithEvents(true);
             }
