@@ -1,19 +1,15 @@
-using GloboTicket.TicketManagement.Api;
 using GloboTicket.TicketManagement.API.IntegrationTests.Base;
-using GloboTicket.TicketManagement.Application.Features.Categories.Queries.GetCategoriesList;
+using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventsList;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers
 {
 
-    public class CategoryControllerTests : IClassFixture<CustomWebApplicationFactory<Program>>
+    public class EventsControllerTests : IClassFixture<CustomWebApplicationFactory<Program>>
     {
         private readonly CustomWebApplicationFactory<Program> _factory;
 
-        public CategoryControllerTests(CustomWebApplicationFactory<Program> factory)
+        public EventsControllerTests(CustomWebApplicationFactory<Program> factory)
         {
             _factory = factory;
         }
@@ -23,15 +19,15 @@ namespace GloboTicket.TicketManagement.API.IntegrationTests.Controllers
         {
             var client = _factory.GetAnonymousClient();
 
-            var response = await client.GetAsync("/api/category/all");
+            var response = await client.GetAsync("api/Events");
 
             response.EnsureSuccessStatusCode();
 
             var responseString = await response.Content.ReadAsStringAsync();
 
-            var result = JsonConvert.DeserializeObject<List<CategoryListVm>>(responseString);
+            var result = JsonConvert.DeserializeObject<List<EventListVm>>(responseString);
             
-            Assert.IsType<List<CategoryListVm>>(result);
+            Assert.IsType<List<EventListVm>>(result);
             Assert.NotEmpty(result);
         }
     }
