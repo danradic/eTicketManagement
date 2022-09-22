@@ -86,7 +86,14 @@ namespace GloboTicket.TicketManagement.Identity.Services
                 }
                 else
                 {
-                    throw new Exception($"{result.Errors}");
+                    StringBuilder errors = new();
+
+                    foreach (var error in result.Errors.ToList())
+                    {
+                        errors.Append($"{error.Description} ");
+                    }
+
+                    throw new Exception($"{errors}");
                 }
             }
             else
