@@ -159,7 +159,7 @@ namespace eTicketManagement.Identity.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "e694d409-06ad-47c0-8c34-be3b8016b1e8", 0, "fb6dd600-29b2-4460-99a2-2f3eb566e241", "john@test.com", true, "John", "Smith", false, null, null, null, null, null, false, "16674bbe-569e-4594-b195-28d5eee02929", false, "johnsmith" });
+                values: new object[] { "7f3541d4-8057-46a4-8477-bacb26478bb6", 0, "ba46c230-cbac-43ab-a947-b653fdffab17", "admin@admin.com", true, "Admin", "Admin", false, null, null, null, "AQAAAAEAACcQAAAAEHx6I3GnEzERFS+JH1FAOapSR55CZ7Gp8OLPyOSJTxZseCcvFJ23lLbT9cSQ/0mh5Q==", null, false, "aa714819-dc5c-4aca-babe-f8f404320181", false, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
