@@ -20,9 +20,9 @@ namespace eTicketManagement.API.IntegrationTests.Base
         {
             builder.ConfigureServices(services =>
             {
-                services.AddDbContext<GloboTicketDbContext>(options =>
+                services.AddDbContext<ETicketManagementDbContext>(options =>
                 {
-                    options.UseInMemoryDatabase("GloboTicketDbContextInMemoryTest");
+                    options.UseInMemoryDatabase("ETicketManagementDbContextInMemoryTest");
                 });
 
                 var sp = services.BuildServiceProvider();
@@ -30,7 +30,7 @@ namespace eTicketManagement.API.IntegrationTests.Base
                 using (var scope = sp.CreateScope())
                 {
                     var scopedServices = scope.ServiceProvider;
-                    var context = scopedServices.GetRequiredService<GloboTicketDbContext>();
+                    var context = scopedServices.GetRequiredService<ETicketManagementDbContext>();
                     var logger = scopedServices.GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
 
                     context.Database.EnsureCreated();

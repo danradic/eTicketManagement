@@ -9,9 +9,9 @@ namespace eTicketManagement.Persistence.Repositories
 {
     public class BaseRepository<T> : IAsyncRepository<T> where T : class
     {
-        protected readonly GloboTicketDbContext _dbContext;
+        protected readonly ETicketManagementDbContext _dbContext;
 
-        public BaseRepository(GloboTicketDbContext dbContext)
+        public BaseRepository(ETicketManagementDbContext dbContext)
         {
             _dbContext = dbContext;
         }

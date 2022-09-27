@@ -8,7 +8,7 @@ namespace eTicketManagement.Persistence.Repositories
 {
     public class EventRepository : BaseRepository<Event>, IEventRepository
     {
-        public EventRepository(GloboTicketDbContext dbContext) : base(dbContext)
+        public EventRepository(ETicketManagementDbContext dbContext) : base(dbContext)
         {
         }
 

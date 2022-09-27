@@ -21,12 +21,12 @@ namespace eTicketManagement.Identity
         {
             services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 
-            services.AddDbContext<GloboTicketIdentityDbContext>(options => options
-                .UseSqlServer(configuration.GetConnectionString("GloboTicketIdentityConnectionString"),
-                b => b.MigrationsAssembly(typeof(GloboTicketIdentityDbContext).Assembly.FullName)));
+            services.AddDbContext<ETicketManagementIdentityDbContext>(options => options
+                .UseSqlServer(configuration.GetConnectionString("eTicketManagementConnectionString"),
+                b => b.MigrationsAssembly(typeof(ETicketManagementIdentityDbContext).Assembly.FullName)));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<GloboTicketIdentityDbContext>().AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<ETicketManagementIdentityDbContext>().AddDefaultTokenProviders();
 
             services.AddTransient<IAuthenticationService, AuthenticationService>();
 

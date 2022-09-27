@@ -10,7 +10,7 @@ namespace eTicketManagement.Persistence.Repositories
 {
     public class OrderRepository : BaseRepository<Order>, IOrderRepository
     {
-        public OrderRepository(GloboTicketDbContext dbContext) : base(dbContext)
+        public OrderRepository(ETicketManagementDbContext dbContext) : base(dbContext)
         {
         }
 

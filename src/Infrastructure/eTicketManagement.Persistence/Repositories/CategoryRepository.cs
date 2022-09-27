@@ -10,7 +10,7 @@ namespace eTicketManagement.Persistence.Repositories
 {
     public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
     {
-        public CategoryRepository(GloboTicketDbContext dbContext) : base(dbContext)
+        public CategoryRepository(ETicketManagementDbContext dbContext) : base(dbContext)
         {
         }
 

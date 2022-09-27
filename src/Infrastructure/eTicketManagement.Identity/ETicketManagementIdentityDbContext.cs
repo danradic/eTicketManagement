@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eTicketManagement.Identity
 {
-    public class GloboTicketIdentityDbContext : IdentityDbContext<ApplicationUser>
+    public class ETicketManagementIdentityDbContext : IdentityDbContext<ApplicationUser>
     {
-        public GloboTicketIdentityDbContext(DbContextOptions<GloboTicketIdentityDbContext> options) : base(options)
+        public ETicketManagementIdentityDbContext(DbContextOptions<ETicketManagementIdentityDbContext> options) : base(options)
         {
         }
 
@@ -21,15 +21,15 @@ namespace eTicketManagement.Identity
         {
             ApplicationUser user = new()
             {
-                FirstName = "John",
-                LastName = "Smith",
-                UserName = "johnsmith",
-                Email = "john@test.com",
+                FirstName = "Admin",
+                LastName = "Admin",
+                UserName = "admin",
+                Email = "admin@admin.com",
                 EmailConfirmed = true
             };
 
             PasswordHasher<ApplicationUser> passwordHasher = new();
-            user.PasswordHash = passwordHasher.HashPassword(user, "Admin*123");
+            user.PasswordHash = passwordHasher.HashPassword(user, "Admin@123");
 
             builder.Entity<ApplicationUser>().HasData(user);
         }

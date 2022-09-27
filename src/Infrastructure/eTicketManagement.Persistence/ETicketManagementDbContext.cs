@@ -2,19 +2,20 @@
 using eTicketManagement.Domain.Common;
 using eTicketManagement.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using static System.Net.WebRequestMethods;
 
 namespace eTicketManagement.Persistence
 {
-    public class GloboTicketDbContext : DbContext
+    public class ETicketManagementDbContext : DbContext
     {
         private readonly ILoggedInUserService _loggedInUserService;
 
-        public GloboTicketDbContext(DbContextOptions<GloboTicketDbContext> options)
+        public ETicketManagementDbContext(DbContextOptions<ETicketManagementDbContext> options)
            : base(options)
         {
         }
 
-        public GloboTicketDbContext(DbContextOptions<GloboTicketDbContext> options, ILoggedInUserService loggedInUserService)
+        public ETicketManagementDbContext(DbContextOptions<ETicketManagementDbContext> options, ILoggedInUserService loggedInUserService)
             : base(options)
         {
             _loggedInUserService = loggedInUserService;
@@ -26,14 +27,14 @@ namespace eTicketManagement.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(GloboTicketDbContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ETicketManagementDbContext).Assembly);
 
             //seed data, added through migrations
             var concertGuid = Guid.Parse("{B0788D2F-8003-43C1-92A4-EDC76A7C5DDE}");
             var musicalGuid = Guid.Parse("{6313179F-7837-473A-A4D5-A5571B43E6A6}");
             var playGuid = Guid.Parse("{BF3F3002-7E53-441E-8B76-F6280BE284AA}");
             var conferenceGuid = Guid.Parse("{FE98F549-E790-4E9F-AA16-18C2292A2EE9}");
-            var createdBy = "dev";
+            var createdBy = "admin";
 
             modelBuilder.Entity<Category>().HasData(new Category
             {
@@ -75,7 +76,7 @@ namespace eTicketManagement.Persistence
                 Artist = "John Egbert",
                 Date = DateTime.Now.AddMonths(6),
                 Description = "Join John for his farwell tour across 15 continents. John really needs no introduction since he has already mesmerized the world with his banjo.",
-                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/banjo.jpg",
+                ImageUrl = "https://danrstorageaccount.blob.core.windows.net/files/eTicketManagement/banjo.jpg",
                 CategoryId = concertGuid
             });
 
@@ -89,7 +90,7 @@ namespace eTicketManagement.Persistence
                 Artist = "Michael Johnson",
                 Date = DateTime.Now.AddMonths(9),
                 Description = "Michael Johnson doesn't need an introduction. His 25 concert across the globe last year were seen by thousands. Can we add you to the list?",
-                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/michael.jpg",
+                ImageUrl = "https://danrstorageaccount.blob.core.windows.net/files/eTicketManagement/michael.jpg",
                 CategoryId = concertGuid
             });
 
@@ -103,7 +104,7 @@ namespace eTicketManagement.Persistence
                 Artist = "DJ 'The Mike'",
                 Date = DateTime.Now.AddMonths(4),
                 Description = "DJs from all over the world will compete in this epic battle for eternal fame.",
-                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/dj.jpg",
+                ImageUrl = "https://danrstorageaccount.blob.core.windows.net/files/eTicketManagement/dj.jpg",
                 CategoryId = concertGuid
             });
 
@@ -117,7 +118,7 @@ namespace eTicketManagement.Persistence
                 Artist = "Manuel Santinonisi",
                 Date = DateTime.Now.AddMonths(4),
                 Description = "Get on the hype of Spanish Guitar concerts with Manuel.",
-                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/guitar.jpg",
+                ImageUrl = "https://danrstorageaccount.blob.core.windows.net/files/eTicketManagement/guitar.jpg",
                 CategoryId = concertGuid
             });
 
@@ -131,7 +132,7 @@ namespace eTicketManagement.Persistence
                 Artist = "Many",
                 Date = DateTime.Now.AddMonths(10),
                 Description = "The best tech conference in the world",
-                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/conf.jpg",
+                ImageUrl = "https://danrstorageaccount.blob.core.windows.net/files/eTicketManagement/conf.jpg",
                 CategoryId = conferenceGuid
             });
 
@@ -145,7 +146,7 @@ namespace eTicketManagement.Persistence
                 Artist = "Nick Sailor",
                 Date = DateTime.Now.AddMonths(8),
                 Description = "The critics are over the moon and so will you after you've watched this sing and dance extravaganza written by Nick Sailor, the man from 'My dad and sister'.",
-                ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/GloboTicket/musical.jpg",
+                ImageUrl = "https://danrstorageaccount.blob.core.windows.net/files/eTicketManagement/musical.jpg",
                 CategoryId = musicalGuid
             });
 
@@ -235,12 +236,12 @@ namespace eTicketManagement.Persistence
                 {
                     case EntityState.Added:
                         entry.Entity.CreatedDate = DateTime.Now;
-                        entry.Entity.CreatedBy = _loggedInUserService.UserId ?? "dev";
-                        entry.Entity.LastModifiedBy = _loggedInUserService.UserId ?? "dev";
+                        entry.Entity.CreatedBy = _loggedInUserService.UserId ?? "admin";
+                        entry.Entity.LastModifiedBy = _loggedInUserService.UserId ?? "admin";
                         break;
                     case EntityState.Modified:
                         entry.Entity.LastModifiedDate = DateTime.Now;
-                        entry.Entity.LastModifiedBy = _loggedInUserService.UserId ?? "dev";
+                        entry.Entity.LastModifiedBy = _loggedInUserService.UserId ?? "admin";
                         break;
                 }
             }

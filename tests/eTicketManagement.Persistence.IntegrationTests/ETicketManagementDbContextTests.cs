@@ -6,22 +6,22 @@ using Shouldly;
 
 namespace eTicketManagement.Persistence.IntegrationTests
 {
-    public class GloboTicketDbContextTests
+    public class ETicketManagementDbContextTests
     {
-        private readonly GloboTicketDbContext _globoTicketDbContext;
+        private readonly ETicketManagementDbContext _eTicketManagementDbContext;
         private readonly Mock<ILoggedInUserService> _loggedInUserServiceMock;
         private readonly string _loggedInUserId;
 
-        public GloboTicketDbContextTests()
+        public ETicketManagementDbContextTests()
         {
-            var dbContextOptions = new DbContextOptionsBuilder<GloboTicketDbContext>()
+            var dbContextOptions = new DbContextOptionsBuilder<ETicketManagementDbContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
 
             _loggedInUserId = "00000000-0000-0000-0000-000000000000";
             _loggedInUserServiceMock = new Mock<ILoggedInUserService>();
             _loggedInUserServiceMock.Setup(m => m.UserId).Returns(_loggedInUserId);
 
-            _globoTicketDbContext = new GloboTicketDbContext(dbContextOptions, _loggedInUserServiceMock.Object);
+            _eTicketManagementDbContext = new ETicketManagementDbContext(dbContextOptions, _loggedInUserServiceMock.Object);
         }
 
         [Fact]
@@ -33,11 +33,11 @@ namespace eTicketManagement.Persistence.IntegrationTests
                 Artist = "Test artist", 
                 Description = "Test description",
                 ImageUrl = "Test url",
-                LastModifiedBy = "test dev"
+                LastModifiedBy = "test admin"
             };
 
-            _globoTicketDbContext.Events.Add(ev);
-            await _globoTicketDbContext.SaveChangesAsync();
+            _eTicketManagementDbContext.Events.Add(ev);
+            await _eTicketManagementDbContext.SaveChangesAsync();
 
             ev.CreatedBy.ShouldBe(_loggedInUserId);
         }
