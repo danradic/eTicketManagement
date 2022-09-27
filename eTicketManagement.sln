@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{601B21D8-BDF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{04227CA6-6843-4599-923C-3D1896843272}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eTicketManagement.Domain", "src\Core\GloboTicket.TicketManagement.Domain\eTicketManagement.Domain.csproj", "{5F93B1FA-F9FE-4B60-AC1C-97D42731AC80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eTicketManagement.Domain", "src\Core\eTicketManagement.Domain\eTicketManagement.Domain.csproj", "{5F93B1FA-F9FE-4B60-AC1C-97D42731AC80}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eTicketManagement.Application", "src\Core\eTicketManagement.Application\eTicketManagement.Application.csproj", "{BC947A51-B816-4F21-B11D-DF8BCB0A72D5}"
 EndProject
