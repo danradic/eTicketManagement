@@ -2,7 +2,7 @@
 
 This is a real-world ticket sales back office application built with `ASP.NET Core 6 Web API` and `Blazor WebAssembly` as the UI and consumer of the API.
 This repository's goal is mainly for learning purposes and to propose a solid solution structure for future projects. 
-Using an `Onion Architecture` aka `Clean Architecture` based on [architectural principles](https://github.com/danradic/eTicketManagement/edit/main/README.md#the-architecture-is-based-on-the-following-architectural-principles), the end goal is to have a testable and maintainable application architecture.
+Using an `Onion Architecture` aka `Clean Architecture` based on [architectural principles](https://github.com/danradic/eTicketManagement#the-architecture-is-based-on-the-following-architectural-principles), the end goal is to have a testable and maintainable application architecture.
 
 
 ### Solution structure
